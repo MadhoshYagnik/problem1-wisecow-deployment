@@ -37,18 +37,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Configure Google Cloud SDK
+        uses: google-github-actions/configure-gcloud@v0.5.0
+        with:
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          project_id: your-project-id
+          export_default_credentials: true
+
       - name: Set up kubectl
         uses: azure/setup-kubectl@v1
         with:
           version: 'latest'
 
-      - name: Create .kube directory
+      - name: Configure Kubernetes cluster
         run: |
-          mkdir -p $HOME/.kube
-
-      - name: Setup K8s context
-        run: |
-          echo "${{ secrets.KUBECONFIG }}" | base64 --decode > $HOME/.kube/config
+          gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone
 
       - name: Deploy to Kubernetes
         run: |
