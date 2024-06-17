@@ -1,7 +1,5 @@
 # CI/CD Pipeline Summary
 
-Thank you for providing the files and the Dockerfile content. Based on the provided information, I can summarize the CI/CD pipeline as follows:
-
 1. The pipeline is triggered by pushes to the `main` branch of the repository.
 
 2. The first job, `build-and-push`, is responsible for building and pushing a Docker image to Docker Hub. It performs the following steps:
@@ -23,4 +21,4 @@ Thank you for providing the files and the Dockerfile content. Based on the provi
 
 6. The provided Dockerfile sets up an Ubuntu-based Docker image that installs `cowsay`, `fortune-mod`, and `netcat-openbsd`. It also copies a `wisecow.sh` script to the container and sets it as the entry point for the container.
 
-In summary, this CI/CD pipeline builds a Docker image from the provided Dockerfile, pushes it to Docker Hub, and then deploys the image to a GKE cluster using Kubernetes manifests. The deployed application exposes a service on port 80, which likely runs the `wisecow.sh` script provided in the Dockerfile.
+In summary, this CI/CD pipeline builds a Docker image from the provided Dockerfile, pushes it to Docker Hub, and then deploys that image to the GKE cluster using Kubernetes manifests. The deployed application exposes a service on port 80, which runs the `wisecow.sh` script provided in the Dockerfile.
