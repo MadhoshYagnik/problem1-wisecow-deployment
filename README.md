@@ -1,3 +1,11 @@
+As required, this repository contains:
+
+- The Wisecow application source code.
+- The Dockerfile for the application.
+- Kubernetes manifest files for deployment.
+- The CI/CD pipeline configuration.
+- A GitHub Actions workflow file for facilitating Continuous Build and Deployment (CI/CD).
+
 # CI/CD Pipeline Summary
 
 1. The pipeline is triggered by pushes to the `main` branch of the repository.
