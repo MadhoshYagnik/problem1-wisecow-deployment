@@ -21,4 +21,6 @@
 
 6. The provided Dockerfile sets up an Ubuntu-based Docker image that installs `cowsay`, `fortune-mod`, and `netcat-openbsd`. It also copies a `wisecow.sh` script to the container and sets it as the entry point for the container.
 
-In summary, this CI/CD pipeline builds a Docker image from the provided Dockerfile, pushes it to Docker Hub, and then deploys that image to the GKE cluster using Kubernetes manifests. The deployed application exposes a service on port 80, which runs the `wisecow.sh` script provided in the Dockerfile.
+7. TLS implementation on deployed application stalled due to missing domain ownership verification.
+
+In summary, this CI/CD pipeline builds a Docker image from the provided Dockerfile, pushes it to Docker Hub, and then deploys the image to the GKE cluster using Kubernetes manifests. The deployed application exposes a service on port 80, which runs the `wisecow.sh` script provided in the Dockerfile.
