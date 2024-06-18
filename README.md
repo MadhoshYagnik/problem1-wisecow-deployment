@@ -8,6 +8,9 @@ As required, this repository contains:
 - A GitHub Actions workflow file for facilitating Continuous Build and Deployment (CI/CD).
 - A comprehensive readme showing how is everything working.
 
+Project overview - 
+![wisecow-deployment](https://github.com/MadhoshYagnik/problem1-wisecow-deployment/blob/main/wisecow-deployment.jpg "wisecow-deployment")
+
 # CI/CD Pipeline Summary
 
 1. The pipeline is triggered by pushes to the `main` branch of the repository.
