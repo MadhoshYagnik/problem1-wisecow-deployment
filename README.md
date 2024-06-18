@@ -1,3 +1,4 @@
+Go to - http://34.100.130.255/ to access the deployed application.
 As required, this repository contains:
 
 - The Wisecow application source code.
