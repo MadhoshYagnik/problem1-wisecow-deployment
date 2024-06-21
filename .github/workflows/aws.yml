@@ -45,7 +45,7 @@ jobs:
 
 
       - name: Update kube config
-        run: aws eks update-kubeconfig --name EKSTesting
+        run: aws eks update-kubeconfig --name wisecow-cluster
 
       - name: Deploy to EKS
         run: |
