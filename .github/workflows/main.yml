@@ -42,3 +42,4 @@ jobs:
         docker build -t wisecow .
         docker tag wisecow:latest 058264120338.dkr.ecr.ap-south-1.amazonaws.com/wisecow:latest
         docker push 058264120338.dkr.ecr.ap-south-1.amazonaws.com/wisecow:latest
+
