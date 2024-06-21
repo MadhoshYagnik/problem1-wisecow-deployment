@@ -39,9 +39,9 @@ jobs:
           REPOSITORY: EKSTestingimage
           IMAGE_TAG: latest
         run: |
-          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
-          docker tag $REGISTRY/$REPOSITORY:$IMAGE_TAG 058264120338.dkr.ecr.ap-south-1.amazonaws.com/wisecow:$IMAGE_TAG
-          docker push 058264120338.dkr.ecr.ap-south-1.amazonaws.com/wisecow:$IMAGE_TAG
+          docker build -t wisecow .
+          docker tag wisecow:latest 058264120338.dkr.ecr.ap-south-1.amazonaws.com/wisecow:latest
+          docker push 058264120338.dkr.ecr.ap-south-1.amazonaws.com/wisecow:latest
 
 
       - name: Update kube config
