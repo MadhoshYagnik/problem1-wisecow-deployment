@@ -1,8 +1,3 @@
-permissions:
-  id-token: write
-  contents: read
-
-
 name: Build and deploy an app to AKS
 
 on:
@@ -12,11 +7,10 @@ on:
 
 env:
   AZURE_CONTAINER_REGISTRY: "wisecowregistery"
-  CONTAINER_NAME: "dockerfile"  # Assuming your Dockerfile is named "dockerfile"
+  CONTAINER_NAME: "dockerfile"
   RESOURCE_GROUP: "wisecow-resource-group"
   CLUSTER_NAME: "wisecow-cluster"
-  DEPLOYMENT_MANIFEST_PATH: "/"  # Assuming both deployment.yaml and service.yaml are in the root directory
-
+  DEPLOYMENT_MANIFEST_PATH: "/"
 
 jobs:
   buildImage:
@@ -25,12 +19,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Azure Login
-        uses: azure/login@v1.4.6
+      - name: Set up Azure CLI
+        uses: azure/CLI@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          azcliversion: 'latest'
+
+      - name: Azure Login
+        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Build and push image to ACR
         run: |
@@ -43,12 +38,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Azure Login
-        uses: azure/login@v1.4.6
+      - name: Set up Azure CLI
+        uses: azure/CLI@v1
         with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          azcliversion: 'latest'
+
+      - name: Azure Login
+        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
       - name: Set up kubelogin for non-interactive login
         uses: azure/use-kubelogin@v1
