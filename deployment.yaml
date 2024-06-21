@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wisecow-deployment
+  name: wisecow
+  labels:
+    app: wisecow
 spec:
   replicas: 1
   selector:
@@ -14,6 +16,7 @@ spec:
     spec:
       containers:
         - name: wisecow
-          image: yagnikm/wisecow:latest
+          image: XXXXXXXX.dkr.ecr.ap-south-1.amazonaws.com/wisecow:latest
+          imagePullPolicy: Always
           ports:
-            - containerPort: 4499 
+            - containerPort: 4499
