@@ -12,6 +12,8 @@ spec:
       labels:
         app: wisecow
     spec:
+      nodeSelector:  # Define your node selector here
+        nodegroup: wisecow-nodegroup
       containers:
         - name: wisecow
           image: ACCOUNT_ID.dkr.ecr.SUA_REGIAO.amazonaws.com/my-cool-application:latest
