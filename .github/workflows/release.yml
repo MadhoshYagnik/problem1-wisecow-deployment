@@ -69,7 +69,7 @@ jobs:
             --tag ${{ env.RELEASE_IMAGE }} \                           
             --target release \                                 
             --push \
-            # --output type=docker \
+            --load \
             .                                                  
       
           rm -rf /tmp/.buildx-cache
