@@ -56,4 +56,6 @@ jobs:
       - name: Verify Kubernetes Deployment
         uses: kodermax/kubectl-aws-eks@master
         env:
-          KUBE_CONFIG_DATA: ${{ secrets
+          KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
+        with:
+          args: rollout status deploy my-pod -n ${{ env.KUBE_NAMESPACE }}
