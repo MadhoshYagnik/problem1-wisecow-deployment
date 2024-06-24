@@ -73,4 +73,3 @@ jobs:
       run: |
         aws eks --region ap-south-1 update-kubeconfig --name wisecow-cluster
         kubectl apply -f deployment.yaml
-        kubectl apply -f service.yaml
