@@ -11,7 +11,7 @@ env:
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
   AWS_REGION: ${{ secrets.AWS_REGION }}
   KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
-  KUBE_NAMESPACE: default
+  KUBE_NAMESPACE: production
   ECR_REPOSITORY: my-cool-application
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBE_CONFIG_DATA }}
         with:
-          args: set image deployment/my-pod app=${{ env.RELEASE_IMAGE }} --record -n ${{ env.KUBE_NAMESPACE }}
+          args: set image deployment/my-pod app=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:latest --record -n ${{ env.KUBE_NAMESPACE }}
 
       - name: Verify Kubernetes Deployment
         uses: kodermax/kubectl-aws-eks@master
