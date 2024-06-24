@@ -17,6 +17,9 @@ spec:
           image: ACCOUNT_ID.dkr.ecr.SUA_REGIAO.amazonaws.com/my-cool-application:latest
           ports:
             - containerPort: 8080
+      nodeSelector:
+        instance-type: t2.micro
+
 ---
 apiVersion: v1
 kind: Service
@@ -24,7 +27,7 @@ metadata:
   name: wisecow-app
 spec:
   selector:
-    app: wisecow-app
+    app: wisecow
   ports:
     - protocol: TCP
       port: 80
