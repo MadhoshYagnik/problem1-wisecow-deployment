@@ -46,12 +46,12 @@ jobs:
     - name: Docker image build
       run: |
         docker build -t wisecow .
-        docker tag wisecow:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/wisecow:latest
+        docker tag my-cool-application:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/my-cool-application:latest
       working-directory: .
 
     - name: Push image to ECR
       run: |
-        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/wisecow:latest
+        docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/my-cool-application:latest
       working-directory: .
 
   deploy-to-kubernetes:
