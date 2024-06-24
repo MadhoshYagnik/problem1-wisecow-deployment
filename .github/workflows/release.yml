@@ -68,7 +68,8 @@ jobs:
             --cache-to=type=local,dest=/tmp/.buildx-cache-new \
             --tag ${{ env.RELEASE_IMAGE }} \                           
             --target release \                                 
-            --push \                                           
+            --push \
+            --output type=docker \
             .                                                  
       
           rm -rf /tmp/.buildx-cache
