@@ -43,37 +43,26 @@ jobs:
         id: login-ecr                        
         uses: aws-actions/amazon-ecr-login@v1
         
-      - name: Set up Docker Buildx                             
-        id: buildx                                             
-        uses: docker/setup-buildx-action@master                
-      - name: Docker cache layers                              
-        uses: actions/cache@v2                                 
-        with:                                                  
-          path: /tmp/.buildx-cache                             
-          key: ${{ runner.os }}-single-buildx-${{ github.sha }}
-          restore-keys: |                                      
-            ${{ runner.os }}-single-buildx
 
-      
 
-      - name: Build & Push Image                                                                                      
-        env:                                                                                                          
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}                                                       
+      - name: Build & Push Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           RELEASE_IMAGE: ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.RELEASE_REVISION }}
         run: |
-          docker buildx create --use
-          
-          docker buildx build \                                
-            --cache-from=type=local,src=/tmp/.buildx-cache \   
-            --cache-to=type=local,dest=/tmp/.buildx-cache-new \
-            --tag ${{ env.RELEASE_IMAGE }} \                           
-            --target release \                                 
-            --push \
-            --load \
-            .                                                  
+          # Build the Docker image
+          docker build \
+            --tag ${{ env.RELEASE_IMAGE }} \
+            -f Dockerfile \  # Replace with your Dockerfile path if different
+            .
+
+          # Push the Docker image
+          docker push ${{ env.RELEASE_IMAGE }}
+
+
+
+
       
-          rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
     
       - name: Deploy to Kubernetes cluster                                                                            
         uses: kodermax/kubectl-aws-eks@master                                                                         
